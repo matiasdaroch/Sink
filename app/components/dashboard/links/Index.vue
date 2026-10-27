@@ -10,7 +10,7 @@ const links = ref<DashboardLink[]>([])
 const listComplete = ref(false)
 const listError = ref(false)
 const listLoading = ref(false)
-const limit = 100
+const limit = 500
 let cursor = ''
 let requestGeneration = 0
 
@@ -22,12 +22,19 @@ provide(RETRY_LINK_COUNTERS_KEY, (id: string) => void fetchCounters([id]))
 const scrollContainer = shallowRef<HTMLElement | null>(null)
 
 // MIK customization: multi-select for bulk actions
+const visibleLinks = computed(() => {
+  const q = linksStore.query.trim().toLowerCase()
+  if (!q)
+    return links.value
+  return links.value.filter(link => [link.slug, link.url, link.comment, link.title, ...(link.tags ?? [])]
+    .some(field => field?.toLowerCase().includes(q)))
+})
 const selectedSlugs = ref<Set<string>>(new Set())
-const selectedLinks = computed(() => links.value.filter(link => selectedSlugs.value.has(link.slug)))
+const selectedLinks = computed(() => visibleLinks.value.filter(link => selectedSlugs.value.has(link.slug)))
 const allSelected = computed<boolean | 'indeterminate'>(() => {
   if (!selectedLinks.value.length)
     return false
-  return selectedLinks.value.length === links.value.length ? true : 'indeterminate'
+  return selectedLinks.value.length === visibleLinks.value.length ? true : 'indeterminate'
 })
 function toggleSelected(slug: string, value: boolean) {
   const next = new Set(selectedSlugs.value)
@@ -38,7 +45,7 @@ function toggleSelected(slug: string, value: boolean) {
   selectedSlugs.value = next
 }
 function toggleAll(value: boolean | 'indeterminate') {
-  selectedSlugs.value = value === true ? new Set(links.value.map(link => link.slug)) : new Set()
+  selectedSlugs.value = value === true ? new Set(visibleLinks.value.map(link => link.slug)) : new Set()
 }
 function clearSelection() {
   selectedSlugs.value = new Set()
@@ -179,20 +186,46 @@ linksStore.onLinkUpdate(({ link, type }) => {
     >
       <Checkbox
         :model-value="allSelected"
-        aria-label="Select all loaded links"
+        aria-label="Select all links shown"
         @update:model-value="toggleAll"
       />
       <span>Link</span>
-      <span class="hidden md:block">Destination</span>
-      <span class="hidden md:block">Created</span>
-      <span class="hidden md:block">Clicks</span>
-      <span class="hidden w-18 md:block" />
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >Destination</span>
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >Created</span>
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >Clicks</span>
+      <span
+        class="
+          hidden w-18
+          md:block
+        "
+      />
     </div>
     <DashboardLinksLinkRow
-      v-for="link in links"
+      v-for="link in visibleLinks"
       :key="link.slug"
       :link="link"
     />
+    <p
+      v-if="!visibleLinks.length"
+      class="px-3 py-8 text-center text-sm text-muted-foreground"
+    >
+      No links match “{{ linksStore.query }}”
+    </p>
   </section>
   <section
     v-else-if="listLoading"

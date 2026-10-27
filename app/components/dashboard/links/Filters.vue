@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LoaderCircle } from '@lucide/vue'
+import { LoaderCircle, Search, X } from '@lucide/vue'
 
 interface TagCount {
   name: string
@@ -95,6 +95,34 @@ linksStore.onLinkUpdate(() => void fetchTags())
     >
       {{ $t('links.filters.tags_failed') }}
     </p>
+    <!-- MIK customization: inline filter; bulk actions apply to the filtered rows -->
+    <div class="relative w-full">
+      <Search
+        class="
+          pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2
+          text-muted-foreground
+        "
+        aria-hidden="true"
+      />
+      <Input
+        v-model="linksStore.query"
+        type="search"
+        placeholder="Filter by slug, description, destination or tag…"
+        aria-label="Filter links"
+        class="px-9"
+      />
+      <Button
+        v-if="linksStore.query"
+        type="button"
+        variant="ghost"
+        size="icon"
+        class="absolute top-1/2 right-1 size-7 -translate-y-1/2"
+        aria-label="Clear filter"
+        @click="linksStore.query = ''"
+      >
+        <X aria-hidden="true" class="size-4" />
+      </Button>
+    </div>
     <!-- MIK customization: tag chips work like folders -->
     <div
       v-if="tags.length || loading"
@@ -127,7 +155,10 @@ linksStore.onLinkUpdate(() => void fetchTags())
       </Button>
       <LoaderCircle
         v-if="loading"
-        class="size-4 shrink-0 motion-safe:animate-spin"
+        class="
+          size-4 shrink-0
+          motion-safe:animate-spin
+        "
         aria-hidden="true"
       />
     </div>
