@@ -7,7 +7,7 @@ const localeHead = useLocaleHead()
 const colorMode = useColorMode()
 
 useSeoMeta({
-  title: `${title} - Link Shortener with Analytics`,
+  title,
   description,
   ogType: 'website',
   ogTitle: title,
@@ -35,13 +35,17 @@ useHead(() => ({
   link: [
     {
       rel: 'canonical',
-      href: computed(() => `https://sink.cool${route.path}`),
+      href: computed(() => `https://mik.archi${route.path}`),
     },
     {
       rel: 'icon',
       type: 'image/png',
       href: '/icon-192.png',
     },
+    // MIK customization: brand fonts (Catamaran headings, Mulish body)
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&display=swap' },
     {
       rel: 'apple-touch-icon',
       href: '/apple-touch-icon.png',
