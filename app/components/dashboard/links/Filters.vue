@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LoaderCircle, Search, X } from '@lucide/vue'
+import { LayoutGrid, List, LoaderCircle, Search, X } from '@lucide/vue'
 
 interface TagCount {
   name: string
@@ -71,6 +71,30 @@ linksStore.onLinkUpdate(() => void fetchTags())
       "
     >
       <DashboardLinksSort />
+      <div class="flex shrink-0 rounded-lg border p-0.5" role="group" aria-label="Layout">
+        <Button
+          type="button"
+          size="icon"
+          :variant="linksStore.view === 'list' ? 'secondary' : 'ghost'"
+          class="size-8"
+          aria-label="List view"
+          :aria-pressed="linksStore.view === 'list'"
+          @click="linksStore.view = 'list'"
+        >
+          <List aria-hidden="true" class="size-4" />
+        </Button>
+        <Button
+          type="button"
+          size="icon"
+          :variant="linksStore.view === 'cards' ? 'secondary' : 'ghost'"
+          class="size-8"
+          aria-label="Card view"
+          :aria-pressed="linksStore.view === 'cards'"
+          @click="linksStore.view = 'cards'"
+        >
+          <LayoutGrid aria-hidden="true" class="size-4" />
+        </Button>
+      </div>
       <Button
         v-if="error"
         type="button"
