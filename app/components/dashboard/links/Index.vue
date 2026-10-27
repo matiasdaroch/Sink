@@ -167,14 +167,34 @@ linksStore.onLinkUpdate(({ link, type }) => {
 </script>
 
 <template>
+  <section
+    v-if="links.length && linksStore.view === 'cards'"
+    class="
+      grid grid-cols-1 gap-4
+      md:grid-cols-2
+      lg:grid-cols-3
+    "
+  >
+    <DashboardLinksLink
+      v-for="link in visibleLinks"
+      :key="link.slug"
+      :link="link"
+    />
+    <p
+      v-if="!visibleLinks.length"
+      class="col-span-full py-8 text-center text-sm text-muted-foreground"
+    >
+      No links match “{{ linksStore.query }}”
+    </p>
+  </section>
   <DashboardLinksBulkActions
-    v-if="selectedLinks.length"
+    v-if="selectedLinks.length && linksStore.view === 'list'"
     class="mb-3"
     :links="selectedLinks"
     @clear="clearSelection"
   />
   <section
-    v-if="links.length"
+    v-if="links.length && linksStore.view === 'list'"
     class="divide-y overflow-hidden rounded-xl border bg-card"
   >
     <div
@@ -228,7 +248,7 @@ linksStore.onLinkUpdate(({ link, type }) => {
     </p>
   </section>
   <section
-    v-else-if="listLoading"
+    v-if="!links.length && listLoading"
     class="
       grid grid-cols-1 gap-4
       md:grid-cols-2
