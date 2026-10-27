@@ -10,7 +10,7 @@ const links = ref<DashboardLink[]>([])
 const listComplete = ref(false)
 const listError = ref(false)
 const listLoading = ref(false)
-const limit = 24
+const limit = 100
 let cursor = ''
 let requestGeneration = 0
 
@@ -137,13 +137,23 @@ linksStore.onLinkUpdate(({ link, type }) => {
 <template>
   <section
     v-if="links.length"
-    class="
-      grid grid-cols-1 gap-4
-      md:grid-cols-2
-      lg:grid-cols-3
-    "
+    class="divide-y overflow-hidden rounded-xl border bg-card"
   >
-    <DashboardLinksLink
+    <div
+      class="
+        hidden grid-cols-[minmax(0,2fr)_minmax(0,1fr)_6rem_4rem_auto] gap-3
+        bg-muted/40 px-3 py-2 text-xs font-medium text-muted-foreground
+        md:grid
+      "
+      aria-hidden="true"
+    >
+      <span>Link</span>
+      <span>Destination</span>
+      <span>Created</span>
+      <span>Clicks</span>
+      <span class="w-18" />
+    </div>
+    <DashboardLinksLinkRow
       v-for="link in links"
       :key="link.slug"
       :link="link"
