@@ -14,6 +14,8 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
   const sortBy = ref<DashboardLinkSort>('newest')
   const status = ref<DashboardLinkStatus>('active')
   const tag = ref<string>()
+  // MIK customization: inline text filter for the list view
+  const query = ref('')
 
   const showLinkEditor = ref(false)
   const editingLink = ref<Record<string, unknown> | null>(null)
@@ -50,6 +52,7 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
     sortBy,
     status,
     tag,
+    query,
     showLinkEditor,
     editingLink,
     openLinkEditor,
