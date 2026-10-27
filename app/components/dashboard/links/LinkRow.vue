@@ -52,7 +52,7 @@ const counters = computed(() => countersMap?.value?.[props.link.id])
 const origin = useRequestURL().origin
 const shortLink = computed(() => `${origin}/${props.link.slug}`)
 const destinationHost = computed(() => parseURL(props.link.url).host ?? props.link.url)
-const linkIcon = computed(() => `https://unavatar.webp.se/${destinationHost.value}?fallback=https://sink.cool/icon.png`)
+const linkIcon = computed(() => `https://unavatar.webp.se/${destinationHost.value}?fallback=https://mik.archi/icon.png`)
 const isExpired = computed(() => Boolean(props.link.expiration && props.link.expiration <= Math.floor(Date.now() / 1000)))
 const noteText = computed(() => props.link.comment?.trim() || props.link.title?.trim() || '')
 
@@ -121,12 +121,17 @@ function copyLink() {
         md:flex
       "
     >
-      <img :src="linkIcon" alt="" loading="lazy" class="size-4 shrink-0 rounded-sm">
+      <img
+        :src="linkIcon" alt="" loading="lazy" class="size-4 shrink-0 rounded-sm"
+      >
       <span class="truncate">{{ destinationHost }}</span>
     </a>
 
     <span
-      class="hidden text-sm text-muted-foreground tabular-nums md:block"
+      class="
+        hidden text-sm text-muted-foreground tabular-nums
+        md:block
+      "
       :title="`${$t('links.created_at')}: ${longDate(link.createdAt, locale)}`"
     >
       {{ shortDate(link.createdAt, locale) }}
@@ -200,7 +205,6 @@ function copyLink() {
     <DashboardLinksQRCodeDialog
       v-model:open="qrDialogOpen"
       :data="shortLink"
-      :image="linkIcon"
       @close-auto-focus="handleDialogCloseAutoFocus"
     />
     <DashboardLinksEditorModal

@@ -78,7 +78,7 @@ function getLinkHost(url: string): string | undefined {
 }
 
 const shortLink = computed(() => `${origin}/${props.link.slug}`)
-const linkIcon = computed(() => `https://unavatar.webp.se/${getLinkHost(props.link.url)}?fallback=https://sink.cool/icon.png`)
+const linkIcon = computed(() => `https://unavatar.webp.se/${getLinkHost(props.link.url)}?fallback=https://mik.archi/icon.png`)
 const isExpired = computed(() => Boolean(props.link.expiration && props.link.expiration <= Math.floor(Date.now() / 1000)))
 const noteText = computed(() => props.link.comment?.trim() ?? '')
 const summaryText = computed(() => props.link.title?.trim() || props.link.description?.trim() || '')
@@ -233,7 +233,6 @@ function copyLink() {
             <PopoverContent>
               <DashboardLinksQRCode
                 :data="shortLink"
-                :image="linkIcon"
               />
             </PopoverContent>
           </Popover>
@@ -406,7 +405,6 @@ function copyLink() {
     <DashboardLinksQRCodeDialog
       v-model:open="qrDialogOpen"
       :data="shortLink"
-      :image="linkIcon"
       @close-auto-focus="handleDialogCloseAutoFocus"
     />
     <DashboardLinksEditorModal
