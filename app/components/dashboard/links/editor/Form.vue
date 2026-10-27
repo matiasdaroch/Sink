@@ -6,6 +6,7 @@ import { useDebounceFn } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import { z } from 'zod'
 import { MAX_URL_LENGTH, nanoid, SlugSchema } from '#shared/schemas/link'
+import { isMaskedLinkPassword } from '#shared/utils/link-password'
 
 const props = defineProps<{
   link: Partial<DashboardLink>
@@ -21,6 +22,9 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n()
 const linksSearchStore = useDashboardLinksSearchStore()
+const linksStore = useDashboardLinksStore()
+// MIK customization: renaming a slug while editing
+const keepOldSlug = shallowRef(true)
 const requestUrl = useRequestURL()
 
 const slugValidator = SlugSchema
@@ -33,6 +37,10 @@ const defaultValues = createLinkFormInitialValues(props.link)
 const form = useForm({
   defaultValues,
   onSubmit: async ({ value }) => {
+    if (props.isEdit && props.link.slug && value.slug.trim() !== props.link.slug) {
+      await renameLink(value)
+      return
+    }
     try {
       const linkData = normalizeLinkFormSubmitPayload(value, props.isEdit)
       const { link: newLink } = await useAPI<{ link: DashboardLink }>(
@@ -53,6 +61,51 @@ const form = useForm({
     }
   },
 })
+
+// MIK customization: a rename creates the new slug with the same internal id
+// (click stats are recorded by id, so they carry over), then either keeps the
+// old slug pointing at the same destination or deletes it.
+async function renameLink(value: typeof defaultValues) {
+  const oldLink = props.link as DashboardLink
+  if (isMaskedLinkPassword(value.password ?? '')) {
+    toast.error('Re-enter the password to rename this link', {
+      description: 'Password-protected links need the password typed again when the slug changes.',
+    })
+    return
+  }
+  const newSlug = value.slug.trim()
+  try {
+    const payload = {
+      ...normalizeLinkFormSubmitPayload(value, false),
+      slug: newSlug,
+      id: oldLink.id,
+      createdAt: oldLink.createdAt,
+    }
+    const { link: created } = await useAPI<{ link: DashboardLink }>('/api/link/create', {
+      method: 'POST',
+      body: payload,
+    })
+    linksSearchStore.syncLink(created, 'create')
+    linksStore.notifyLinkUpdate(created, 'create')
+
+    if (!keepOldSlug.value) {
+      await useAPI('/api/link/delete', { method: 'POST', body: { slug: oldLink.slug } })
+      linksSearchStore.syncLink(oldLink, 'delete')
+      linksStore.notifyLinkUpdate(oldLink, 'delete')
+    }
+    emit('success', created)
+    toast(keepOldSlug.value
+      ? `Created ${newSlug}; ${oldLink.slug} still works`
+      : `Renamed ${oldLink.slug} to ${newSlug}`)
+  }
+  catch (error) {
+    console.error(error)
+    toast.error(t('links.update_failed'), {
+      description: error instanceof Error ? error.message : String(error),
+    })
+  }
+}
+
 const isSubmitting = form.useStore(state => state.isSubmitting)
 const isDirty = form.useStore(state => !state.isDefaultValue)
 const tagsInput = useTemplateRef<{ commit: () => boolean }>('tagsInput')
@@ -334,7 +387,6 @@ defineExpose({ initializeRandomSlug })
               :id="`${formId}-${field.name}`"
               :name="field.name"
               :model-value="field.state.value"
-              :disabled="isEdit"
               :aria-invalid="getAriaInvalid(field)"
               placeholder="my-short-link"
               autocomplete="off"
@@ -347,6 +399,20 @@ defineExpose({ initializeRandomSlug })
               v-if="isInvalid(field)"
               :errors="formatErrors(field.state.meta.errors)"
             />
+            <label
+              v-if="isEdit && link.slug && field.state.value.trim() && field.state.value.trim() !== link.slug"
+              class="flex items-start gap-2 text-sm"
+            >
+              <Checkbox
+                :model-value="keepOldSlug"
+                class="mt-0.5"
+                @update:model-value="v => keepOldSlug = v === true"
+              />
+              <span>
+                Keep <strong>{{ link.slug }}</strong> working too
+                <span class="block text-xs text-muted-foreground">Recommended if the old link is printed, in a QR code or already shared. Unchecked, the old link is deleted.</span>
+              </span>
+            </label>
           </Field>
         </form.Field>
 
