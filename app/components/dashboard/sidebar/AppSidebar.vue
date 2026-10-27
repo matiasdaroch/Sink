@@ -62,16 +62,31 @@ const settingsItems = computed<NavItem[]>(() => [
                 "
               >
                 <img
-                  src="/sink.png"
+                  src="/icon-192.png"
                   alt=""
                   width="32"
                   height="32"
-                  class="size-8 rounded-full"
+                  class="size-8 rounded-md border"
                 >
               </div>
-              <div class="grid flex-1 text-left text-sm/tight">
-                <span class="truncate font-medium">{{ title }}</span>
-                <span class="truncate text-xs">{{ $t('sidebar.subtitle') }}</span>
+              <!-- MIK customization: text logo, MIK in Mulish Bold, ARCHITECTURE in Catamaran -->
+              <div
+                class="
+                  grid flex-1 text-left leading-tight text-black
+                  dark:text-white
+                "
+              >
+                <span class="truncate whitespace-nowrap">
+                  <span
+                    class="font-['Mulish'] text-[13px] font-bold tracking-wide"
+                  >MIK</span>
+                  <span
+                    class="
+                      font-['Catamaran'] text-[13.5px] font-normal tracking-wide
+                    "
+                  >ARCHITECTURE</span>
+                </span>
+                <span class="truncate text-xs text-muted-foreground">{{ title }}</span>
               </div>
             </NuxtLink>
           </SidebarMenuButton>
