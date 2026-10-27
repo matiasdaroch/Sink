@@ -52,6 +52,10 @@ export default defineNuxtConfig({
     '/dashboard': {
       redirect: '/dashboard/links',
     },
+    // MIK: short admin entry point, e.g. mik.archi/admin
+    '/admin': {
+      redirect: '/dashboard/links',
+    },
     '/api/**': {
       cors: process.env.NUXT_API_CORS === 'true',
     },
