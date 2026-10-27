@@ -43,6 +43,9 @@ function handleDialogCloseAutoFocus(event: Event) {
   })
 }
 
+const selection = inject(LINK_SELECTION_KEY, null)
+const isSelected = computed(() => selection?.selectedSlugs.value.has(props.link.slug) ?? false)
+
 const countersMap = inject(LINKS_COUNTERS_MAP_KEY)
 const counters = computed(() => countersMap?.value?.[props.link.id])
 
@@ -64,11 +67,18 @@ function copyLink() {
 <template>
   <div
     class="
-      grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-2
+      grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-3 py-2
       hover:bg-muted/50
-      md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_6rem_4rem_auto]
+      data-[selected=true]:bg-muted/60
+      md:grid-cols-[auto_minmax(0,2fr)_minmax(0,1fr)_6rem_4rem_auto]
     "
+    :data-selected="isSelected"
   >
+    <Checkbox
+      :model-value="isSelected"
+      :aria-label="`Select ${link.slug}`"
+      @update:model-value="value => selection?.toggleSelected(link.slug, value === true)"
+    />
     <div class="min-w-0">
       <div class="flex min-w-0 items-center gap-2">
         <NuxtLink
