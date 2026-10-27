@@ -1,7 +1,7 @@
 import type { Link, LinkUpdateType } from '@/types'
 import type { DashboardLinkStatus } from '@/types/dashboard-links'
 import type { DashboardLinkSort, LinksQueryState } from '@/utils/dashboard-query'
-import { createEventHook, tryOnScopeDispose } from '@vueuse/core'
+import { createEventHook, tryOnScopeDispose, useLocalStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import { defineStore } from '#imports'
 
@@ -16,6 +16,8 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
   const tag = ref<string>()
   // MIK customization: inline text filter for the list view
   const query = ref('')
+  // MIK customization: list or card layout, remembered per browser
+  const view = useLocalStorage<'list' | 'cards'>('mik-links-view', 'list')
 
   const showLinkEditor = ref(false)
   const editingLink = ref<Record<string, unknown> | null>(null)
@@ -53,6 +55,7 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
     status,
     tag,
     query,
+    view,
     showLinkEditor,
     editingLink,
     openLinkEditor,
