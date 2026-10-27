@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LayoutGrid, List, LoaderCircle, Search, X } from '@lucide/vue'
+import { isParentTagFilter, isProjectTag } from '#shared/utils/project-tags'
 
 interface TagCount {
   name: string
@@ -20,8 +21,9 @@ async function fetchTags() {
   try {
     const data = await useAPI<TagCount[]>('/api/link/tags')
     if (generation === requestGeneration) {
-      tags.value = data
-      if (linksStore.tag && !data.some(item => item.name === linksStore.tag))
+      // MIK customization: project subtags live in the top-bar Projects menu, not the chip row
+      tags.value = data.filter(item => !isProjectTag(item.name))
+      if (linksStore.tag && !isParentTagFilter(linksStore.tag) && !data.some(item => item.name === linksStore.tag))
         linksStore.tag = undefined
     }
   }

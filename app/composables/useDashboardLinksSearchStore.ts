@@ -3,6 +3,7 @@ import type { DashboardLink, DashboardLinkSearchItem } from '@/types/dashboard-l
 import { parseURL, stringifyParsedURL } from 'ufo'
 import { computed, readonly, ref, shallowRef } from 'vue'
 import { defineStore } from '#imports'
+import { matchesTagFilter } from '#shared/utils/project-tags'
 import { useAPI } from '@/utils/api'
 
 export const useDashboardLinksSearchStore = defineStore('dashboard-links-search', () => {
@@ -93,7 +94,7 @@ export const useDashboardLinksSearchStore = defineStore('dashboard-links-search'
     const normalizedQuery = query.value.toLocaleLowerCase()
     const isExpired = Boolean(nextLink.expiration && nextLink.expiration <= Math.floor(Date.now() / 1000))
     const matchesCurrentFilters = (linksStore.status === 'expired') === isExpired
-      && (!linksStore.tag || nextLink.tags?.includes(linksStore.tag))
+      && matchesTagFilter(nextLink.tags, linksStore.tag)
     const matchesCurrentQuery = matchesCurrentFilters && normalizedQuery
       && [nextLink.slug, nextLink.url, nextLink.comment, ...(nextLink.tags ?? [])]
         .some(value => value?.toLocaleLowerCase().includes(normalizedQuery))

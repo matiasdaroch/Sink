@@ -386,9 +386,9 @@ function copyLink() {
               v-for="tag in visibleTags"
               :key="tag"
               variant="outline"
-              class="max-w-24 min-w-0 shrink truncate"
+              class="max-w-32 min-w-0 shrink"
             >
-              {{ tag }}
+              <DashboardLinksTagLabel :tag="tag" />
             </Badge>
             <Badge
               v-if="hiddenTagCount"

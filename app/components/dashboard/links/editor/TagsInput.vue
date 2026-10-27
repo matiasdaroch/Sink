@@ -28,7 +28,7 @@ function commit(): boolean {
   if (!tag)
     return true
 
-  if (tag.length > 32) {
+  if (tag.length > 64) {
     error.value = t('links.form.tag_too_long')
     return false
   }

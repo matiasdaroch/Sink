@@ -108,6 +108,22 @@ describe('d1 link integration', () => {
     expect(data.links.map(link => link.slug)).toEqual([newer.slug, older.slug])
   })
 
+  it('matches every subtag when the tag filter ends with a slash', async () => {
+    const parent = `proj${crypto.randomUUID().slice(0, 8)}/`
+    const first = makeLink(undefined, { tags: [`${parent}2405-smith-residence-key-biscayne-fl`] })
+    const second = makeLink(undefined, { tags: [`${parent}2410-jones`] })
+    const other = makeLink(undefined, { tags: [`${parent.slice(0, -1)}-other`] })
+    for (const link of [first, second, other])
+      expect((await postJson('/api/link/create', link)).status).toBe(201)
+
+    const list = await (await fetchWithAuth(`/api/link/list?tag=${encodeURIComponent(parent)}`)).json() as { links: Link[] }
+    expect(list.links.map(link => link.slug).sort()).toEqual([first.slug, second.slug].sort())
+    const search = await (await fetchWithAuth(`/api/link/search?q=d1-&tag=${encodeURIComponent(parent)}&status=all`)).json() as Link[]
+    expect(search.map(link => link.slug).sort()).toEqual([first.slug, second.slug].sort())
+    const exact = await (await fetchWithAuth(`/api/link/list?tag=${encodeURIComponent(`${parent}2410-jones`)}`)).json() as { links: Link[] }
+    expect(exact.links.map(link => link.slug)).toEqual([second.slug])
+  })
+
   it('normalizes tags and supports create, edit, query, list, search, tag counts, and export/import', async () => {
     const slug = trackSlug(`tags-${crypto.randomUUID()}`)
     const tag = `topic-${crypto.randomUUID().slice(0, 8)}`

@@ -21,6 +21,7 @@ onMounted(() => {
         {{ $t('links.group_title') }}
       </h1>
       <Teleport to="#dashboard-header-actions" defer>
+        <DashboardLinksProjectsMenu />
         <DashboardLinksSearchDialog />
         <DashboardLinksEditorModal />
       </Teleport>

@@ -179,7 +179,7 @@ export function parseLinksQuery(query: DashboardQuery): LinksQueryState {
   return {
     status: enumValue(query.status, LINK_STATUSES) ?? DEFAULT_LINK_STATUS,
     sort: enumValue(query.sort, LINK_SORTS) ?? DEFAULT_LINK_SORT,
-    tag: tag && tag.length <= 32 ? tag : undefined,
+    tag: tag && tag.length <= 64 ? tag : undefined,
   }
 }
 

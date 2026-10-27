@@ -3,6 +3,7 @@ import type { LinkUpdateType } from '@/types'
 import type { DashboardLink, DashboardLinkListResponse } from '@/types/dashboard-links'
 import { AlertCircle, Inbox, LoaderCircle } from '@lucide/vue'
 import { useInfiniteScroll } from '@vueuse/core'
+import { matchesTagFilter } from '#shared/utils/project-tags'
 
 const linksStore = useDashboardLinksStore()
 
@@ -132,7 +133,7 @@ watch(
 function matchesCurrentFilters(link: DashboardLink) {
   const isExpired = Boolean(link.expiration && link.expiration <= Math.floor(Date.now() / 1000))
   return (linksStore.status === 'expired') === isExpired
-    && (!linksStore.tag || link.tags?.includes(linksStore.tag))
+    && matchesTagFilter(link.tags, linksStore.tag)
 }
 
 function updateLinkList(link: DashboardLink, type: LinkUpdateType) {

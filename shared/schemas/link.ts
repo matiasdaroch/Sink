@@ -38,7 +38,7 @@ const TagsSchema = z.preprocess((value) => {
   if (!Array.isArray(value))
     return value
   return [...new Set(value.map(tag => typeof tag === 'string' ? tag.trim().toLowerCase() : tag))]
-}, z.array(z.string().min(1).max(32)).max(10)).default([])
+}, z.array(z.string().min(1).max(64)).max(10)).default([])
 
 export const LinkPasswordSchema = z.string().trim().min(1).max(128).refine(
   password => !password.startsWith(LINK_PASSWORD_MASK_PREFIX),
@@ -89,7 +89,7 @@ export const LinkFieldsSchema = z.object({
   password: LinkPasswordSchema.optional(),
   unsafe: z.boolean().optional().describe('Show a warning page before redirecting.'),
   geo: GeoSchema.optional().describe('Geo-routing rules mapping a two-letter country code to a URL.'),
-  tags: TagsSchema.describe('Up to 10 normalized link tags, each 1-32 characters.'),
+  tags: TagsSchema.describe('Up to 10 normalized link tags, each 1-64 characters.'),
 })
 
 export const CreateLinkSchema = LinkFieldsSchema.extend({
@@ -123,7 +123,7 @@ const LinkKeywordSchema = z.string().trim().refine(
   { message: 'Search query must not exceed 48 UTF-8 bytes' },
 ).describe('Case-insensitive substring matched against slug, URL, comment, or tag. Limited to 48 UTF-8 bytes.')
 
-const LinkTagFilterSchema = z.string().trim().toLowerCase().min(1).max(32).describe('Exact tag match, normalized to lowercase.')
+const LinkTagFilterSchema = z.string().trim().toLowerCase().min(1).max(64).describe('Exact tag match, normalized to lowercase. A value ending in "/" (e.g. "project/") matches every subtag under it.')
 const LinkStatusFilterSchema = z.enum(['active', 'expired', 'all']).default('active')
 const LinkQueryLimitSchema = z.coerce.number().int().min(1).max(1000).default(20).describe('Maximum number of results, 1-1000.')
 

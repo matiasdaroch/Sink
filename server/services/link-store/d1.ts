@@ -6,6 +6,7 @@ import { and, asc, count, desc, eq, exists, gt, inArray, isNotNull, isNull, lt, 
 import { drizzle } from 'drizzle-orm/d1'
 import { createError } from 'h3'
 import { parseURL, stringifyParsedURL } from 'ufo'
+import { isParentTagFilter } from '../../../shared/utils/project-tags'
 import { links, linkTags, linkTombstones, tags } from '../../database/schema'
 import { getExpiration } from '../../utils/time'
 
@@ -74,12 +75,16 @@ function statusCondition(status: LinkStatus, now = Math.floor(Date.now() / 1000)
 }
 
 function exactTagCondition(db: ReturnType<typeof getDatabase>, tag: string | undefined) {
-  return tag
-    ? exists(db.select({ linkSlug: linkTags.linkSlug }).from(linkTags).where(and(
-        eq(linkTags.linkSlug, links.slug),
-        eq(linkTags.tagName, tag),
-      )))
-    : undefined
+  if (!tag)
+    return undefined
+  // MIK customization: a filter like `project/` matches every subtag under that parent.
+  const tagMatch = isParentTagFilter(tag)
+    ? sql`${linkTags.tagName} like ${`${tag.replace(/[!%_]/g, '!$&')}%`} escape '!'`
+    : eq(linkTags.tagName, tag)
+  return exists(db.select({ linkSlug: linkTags.linkSlug }).from(linkTags).where(and(
+    eq(linkTags.linkSlug, links.slug),
+    tagMatch,
+  )))
 }
 
 function rowToLink(row: LinkRow): Link {

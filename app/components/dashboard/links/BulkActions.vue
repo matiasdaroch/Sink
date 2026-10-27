@@ -84,7 +84,7 @@ async function editLink(link: DashboardLink, patch: Record<string, unknown>) {
 
 function addTag() {
   const tag = newTag.value.trim().toLowerCase()
-  if (!tag || tag.length > 32)
+  if (!tag || tag.length > 64)
     return
   addTagOpen.value = false
   newTag.value = ''
@@ -142,7 +142,12 @@ function deleteLinks() {
   >
     <span class="px-1 text-sm font-medium tabular-nums">
       <template v-if="busy">
-        <LoaderCircle class="mr-1 inline size-4 motion-safe:animate-spin" aria-hidden="true" />
+        <LoaderCircle
+          class="
+            mr-1 inline size-4
+            motion-safe:animate-spin
+          " aria-hidden="true"
+        />
         {{ progress }} / {{ links.length }}
       </template>
       <template v-else>{{ links.length }} selected</template>
@@ -219,7 +224,12 @@ function deleteLinks() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction class="bg-destructive text-white hover:bg-destructive/90" @click="deleteLinks">
+          <AlertDialogAction
+            class="
+              bg-destructive text-white
+              hover:bg-destructive/90
+            " @click="deleteLinks"
+          >
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>

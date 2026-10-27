@@ -98,11 +98,11 @@ function copyLink() {
           :key="tag"
           variant="outline"
           class="
-            hidden max-w-24 shrink-0 truncate
+            hidden max-w-32 shrink-0
             lg:inline-flex
           "
         >
-          {{ tag }}
+          <DashboardLinksTagLabel :tag="tag" />
         </Badge>
       </div>
       <p v-if="noteText" class="truncate text-xs text-muted-foreground">
