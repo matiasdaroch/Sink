@@ -49,7 +49,7 @@ linksStore.onLinkUpdate(() => void fetchTags())
   <section
     class="
       flex flex-col gap-3
-      md:flex-row md:items-center md:justify-between
+      md:flex-row md:flex-wrap md:items-center md:justify-between
     "
     :aria-label="$t('links.filters.aria_label')"
   >
@@ -71,37 +71,6 @@ linksStore.onLinkUpdate(() => void fetchTags())
       "
     >
       <DashboardLinksSort />
-      <Select :model-value="linksStore.tag ?? allTagsValue" :disabled="loading" @update:model-value="selectTag">
-        <SelectTrigger
-          class="
-            min-w-0 flex-1
-            md:w-56 md:flex-none
-          "
-          :aria-label="$t('links.filters.tag_label')"
-        >
-          <SelectValue :placeholder="$t('links.filters.all_tags')" />
-          <LoaderCircle
-            v-if="loading"
-            class="
-              size-4 shrink-0
-              motion-safe:animate-spin
-            "
-            aria-hidden="true"
-          />
-          <span v-if="loading" class="sr-only">{{ $t('links.filters.tags_loading') }}</span>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem :value="allTagsValue">
-            {{ $t('links.filters.all_tags') }}
-          </SelectItem>
-          <SelectItem v-for="item in tags" :key="item.name" :value="item.name">
-            <span class="flex w-full items-center justify-between gap-4">
-              <span class="truncate">{{ item.name }}</span>
-              <span class="text-xs text-muted-foreground tabular-nums">{{ item.count }}</span>
-            </span>
-          </SelectItem>
-        </SelectContent>
-      </Select>
       <Button
         v-if="error"
         type="button"
@@ -126,5 +95,41 @@ linksStore.onLinkUpdate(() => void fetchTags())
     >
       {{ $t('links.filters.tags_failed') }}
     </p>
+    <!-- MIK customization: tag chips work like folders -->
+    <div
+      v-if="tags.length || loading"
+      class="flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-1"
+      role="group"
+      :aria-label="$t('links.filters.tag_label')"
+    >
+      <Button
+        type="button"
+        size="sm"
+        :variant="linksStore.tag ? 'outline' : 'default'"
+        class="shrink-0 rounded-full"
+        :aria-pressed="!linksStore.tag"
+        @click="selectTag(allTagsValue)"
+      >
+        {{ $t('links.filters.all_tags') }}
+      </Button>
+      <Button
+        v-for="item in tags"
+        :key="item.name"
+        type="button"
+        size="sm"
+        :variant="linksStore.tag === item.name ? 'default' : 'outline'"
+        class="shrink-0 rounded-full"
+        :aria-pressed="linksStore.tag === item.name"
+        @click="selectTag(item.name)"
+      >
+        {{ item.name }}
+        <span class="text-xs tabular-nums opacity-70">{{ item.count }}</span>
+      </Button>
+      <LoaderCircle
+        v-if="loading"
+        class="size-4 shrink-0 motion-safe:animate-spin"
+        aria-hidden="true"
+      />
+    </div>
   </section>
 </template>
