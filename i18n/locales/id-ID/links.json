@@ -44,6 +44,36 @@
       "tags_loading": "Memuat tag…",
       "tags_failed": "Gagal memuat tag."
     },
+    "view": {
+      "label": "Tata letak",
+      "cards": "Tampilan kartu",
+      "list": "Tampilan daftar"
+    },
+    "list": {
+      "select_all": "Pilih semua tautan yang dimuat",
+      "select_link": "Pilih {slug}",
+      "link": "Tautan",
+      "destination": "Tujuan",
+      "created": "Dibuat",
+      "clicks": "Klik"
+    },
+    "bulk": {
+      "label": "Tindakan massal",
+      "selected": "{count} dipilih",
+      "progress": "{done} / {total}",
+      "add_tag": "Tambah tag",
+      "add": "Tambah",
+      "remove_tag": "Hapus tag",
+      "expiration": "Kedaluwarsa",
+      "expiration_description": "Tautan berhenti berfungsi di akhir hari ini.",
+      "set": "Atur",
+      "remove_expiration": "Hapus kedaluwarsa",
+      "clear": "Batal pilih",
+      "done": "{count} tautan diperbarui",
+      "partial": "{done} selesai, {failed} gagal",
+      "delete_title": "Hapus {count} tautan?",
+      "delete_description": "Siapa pun yang membuka atau memindai tautan ini tidak akan lagi mencapai tujuan. Tindakan ini tidak dapat dibatalkan."
+    },
     "stats": {
       "retry": "Coba lagi statistik {slug}",
       "visits": "{count} kunjungan",

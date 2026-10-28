@@ -44,6 +44,36 @@
       "tags_loading": "正在加载标签…",
       "tags_failed": "标签加载失败。"
     },
+    "view": {
+      "label": "布局",
+      "cards": "卡片视图",
+      "list": "列表视图"
+    },
+    "list": {
+      "select_all": "选择所有已加载的链接",
+      "select_link": "选择 {slug}",
+      "link": "链接",
+      "destination": "目标",
+      "created": "创建时间",
+      "clicks": "点击"
+    },
+    "bulk": {
+      "label": "批量操作",
+      "selected": "已选择 {count} 个",
+      "progress": "{done} / {total}",
+      "add_tag": "添加标签",
+      "add": "添加",
+      "remove_tag": "移除标签",
+      "expiration": "过期时间",
+      "expiration_description": "链接将在当天结束时失效。",
+      "set": "设置",
+      "remove_expiration": "移除过期时间",
+      "clear": "取消选择",
+      "done": "已更新 {count} 个链接",
+      "partial": "{done} 个成功，{failed} 个失败",
+      "delete_title": "删除 {count} 个链接？",
+      "delete_description": "打开或扫描这些链接的人将无法再到达目标地址。此操作无法撤销。"
+    },
     "stats": {
       "retry": "重试加载 {slug} 的统计数据",
       "visits": "{count} 次访问",

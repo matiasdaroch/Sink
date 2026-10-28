@@ -1,7 +1,7 @@
 import type { Link, LinkUpdateType } from '@/types'
 import type { DashboardLinkStatus } from '@/types/dashboard-links'
 import type { DashboardLinkSort, LinksQueryState } from '@/utils/dashboard-query'
-import { createEventHook, tryOnScopeDispose } from '@vueuse/core'
+import { createEventHook, tryOnScopeDispose, useLocalStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import { defineStore } from '#imports'
 
@@ -14,6 +14,8 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
   const sortBy = ref<DashboardLinkSort>('newest')
   const status = ref<DashboardLinkStatus>('active')
   const tag = ref<string>()
+  // Card grid or compact list, remembered per browser
+  const view = useLocalStorage<'cards' | 'list'>('sink-links-view', 'cards')
 
   const showLinkEditor = ref(false)
   const editingLink = ref<Record<string, unknown> | null>(null)
@@ -50,6 +52,7 @@ export const useDashboardLinksStore = defineStore('dashboard-links', () => {
     sortBy,
     status,
     tag,
+    view,
     showLinkEditor,
     editingLink,
     openLinkEditor,

@@ -44,6 +44,36 @@
       "tags_loading": "Tags werden geladen…",
       "tags_failed": "Tags konnten nicht geladen werden."
     },
+    "view": {
+      "label": "Layout",
+      "cards": "Kartenansicht",
+      "list": "Listenansicht"
+    },
+    "list": {
+      "select_all": "Alle geladenen Links auswählen",
+      "select_link": "{slug} auswählen",
+      "link": "Link",
+      "destination": "Ziel",
+      "created": "Erstellt",
+      "clicks": "Klicks"
+    },
+    "bulk": {
+      "label": "Massenaktionen",
+      "selected": "{count} ausgewählt",
+      "progress": "{done} / {total}",
+      "add_tag": "Tag hinzufügen",
+      "add": "Hinzufügen",
+      "remove_tag": "Tag entfernen",
+      "expiration": "Ablaufdatum",
+      "expiration_description": "Links funktionieren ab dem Ende dieses Tages nicht mehr.",
+      "set": "Festlegen",
+      "remove_expiration": "Ablaufdatum entfernen",
+      "clear": "Aufheben",
+      "done": "{count} Links aktualisiert",
+      "partial": "{done} erledigt, {failed} fehlgeschlagen",
+      "delete_title": "{count} Links löschen?",
+      "delete_description": "Wer diese Links öffnet oder scannt, erreicht das Ziel nicht mehr. Dies kann nicht rückgängig gemacht werden."
+    },
     "stats": {
       "retry": "Statistik für {slug} erneut laden",
       "visits": "{count} Besuche",

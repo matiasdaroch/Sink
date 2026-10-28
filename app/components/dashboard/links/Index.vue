@@ -21,6 +21,30 @@ provide(RETRY_LINK_COUNTERS_KEY, (id: string) => void fetchCounters([id]))
 
 const scrollContainer = shallowRef<HTMLElement | null>(null)
 
+// Multi-select for bulk actions in the list view
+const selectedSlugs = ref<Set<string>>(new Set())
+const selectedLinks = computed(() => links.value.filter(link => selectedSlugs.value.has(link.slug)))
+const allSelected = computed<boolean | 'indeterminate'>(() => {
+  if (!selectedLinks.value.length)
+    return false
+  return selectedLinks.value.length === links.value.length ? true : 'indeterminate'
+})
+function toggleSelected(slug: string, value: boolean) {
+  const next = new Set(selectedSlugs.value)
+  if (value)
+    next.add(slug)
+  else
+    next.delete(slug)
+  selectedSlugs.value = next
+}
+function toggleAll(value: boolean | 'indeterminate') {
+  selectedSlugs.value = value === true ? new Set(links.value.map(link => link.slug)) : new Set()
+}
+function clearSelection() {
+  selectedSlugs.value = new Set()
+}
+provide(LINK_SELECTION_KEY, { selectedSlugs, toggleSelected })
+
 onMounted(() => {
   scrollContainer.value = document.getElementById('dashboard-main')
   void getLinks()
@@ -71,6 +95,7 @@ async function getLinks() {
 
 function resetAndLoad() {
   requestGeneration++
+  clearSelection()
   links.value = []
   resetCounters()
   cursor = ''
@@ -136,7 +161,7 @@ linksStore.onLinkUpdate(({ link, type }) => {
 
 <template>
   <section
-    v-if="links.length"
+    v-if="links.length && linksStore.view === 'cards'"
     class="
       grid grid-cols-1 gap-4
       md:grid-cols-2
@@ -149,8 +174,62 @@ linksStore.onLinkUpdate(({ link, type }) => {
       :link="link"
     />
   </section>
+  <DashboardLinksBulkActions
+    v-if="selectedLinks.length && linksStore.view === 'list'"
+    class="mb-3"
+    :links="selectedLinks"
+    @clear="clearSelection"
+  />
   <section
-    v-else-if="listLoading"
+    v-if="links.length && linksStore.view === 'list'"
+    class="divide-y overflow-hidden rounded-xl border bg-card"
+  >
+    <div
+      class="
+        grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 bg-muted/40 px-3
+        py-2 text-xs font-medium text-muted-foreground
+        md:grid-cols-[auto_minmax(0,2fr)_minmax(0,1fr)_6rem_4rem_auto]
+      "
+    >
+      <Checkbox
+        :model-value="allSelected"
+        :aria-label="$t('links.list.select_all')"
+        @update:model-value="toggleAll"
+      />
+      <span>{{ $t('links.list.link') }}</span>
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >{{ $t('links.list.destination') }}</span>
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >{{ $t('links.list.created') }}</span>
+      <span
+        class="
+          hidden
+          md:block
+        "
+      >{{ $t('links.list.clicks') }}</span>
+      <span
+        class="
+          hidden w-18
+          md:block
+        "
+      />
+    </div>
+    <DashboardLinksLinkRow
+      v-for="link in links"
+      :key="link.slug"
+      :link="link"
+    />
+  </section>
+  <section
+    v-if="!links.length && listLoading"
     class="
       grid grid-cols-1 gap-4
       md:grid-cols-2

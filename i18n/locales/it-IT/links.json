@@ -44,6 +44,36 @@
       "tags_loading": "Caricamento tag…",
       "tags_failed": "Impossibile caricare i tag."
     },
+    "view": {
+      "label": "Layout",
+      "cards": "Vista a schede",
+      "list": "Vista elenco"
+    },
+    "list": {
+      "select_all": "Seleziona tutti i link caricati",
+      "select_link": "Seleziona {slug}",
+      "link": "Link",
+      "destination": "Destinazione",
+      "created": "Creato",
+      "clicks": "Clic"
+    },
+    "bulk": {
+      "label": "Azioni multiple",
+      "selected": "{count} selezionati",
+      "progress": "{done} / {total}",
+      "add_tag": "Aggiungi tag",
+      "add": "Aggiungi",
+      "remove_tag": "Rimuovi tag",
+      "expiration": "Scadenza",
+      "expiration_description": "I link smettono di funzionare alla fine di questo giorno.",
+      "set": "Imposta",
+      "remove_expiration": "Rimuovi scadenza",
+      "clear": "Deseleziona",
+      "done": "{count} link aggiornati",
+      "partial": "{done} completati, {failed} non riusciti",
+      "delete_title": "Eliminare {count} link?",
+      "delete_description": "Chi apre o scansiona questi link non raggiungerà più la destinazione. L’operazione non può essere annullata."
+    },
     "stats": {
       "retry": "Riprova le statistiche di {slug}",
       "visits": "{count} visite",

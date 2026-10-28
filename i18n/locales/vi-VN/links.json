@@ -44,6 +44,36 @@
       "tags_loading": "Đang tải thẻ…",
       "tags_failed": "Không thể tải thẻ."
     },
+    "view": {
+      "label": "Bố cục",
+      "cards": "Dạng thẻ",
+      "list": "Dạng danh sách"
+    },
+    "list": {
+      "select_all": "Chọn tất cả liên kết đã tải",
+      "select_link": "Chọn {slug}",
+      "link": "Liên kết",
+      "destination": "Đích",
+      "created": "Ngày tạo",
+      "clicks": "Lượt nhấp"
+    },
+    "bulk": {
+      "label": "Thao tác hàng loạt",
+      "selected": "Đã chọn {count}",
+      "progress": "{done} / {total}",
+      "add_tag": "Thêm thẻ",
+      "add": "Thêm",
+      "remove_tag": "Xóa thẻ",
+      "expiration": "Hết hạn",
+      "expiration_description": "Liên kết ngừng hoạt động vào cuối ngày này.",
+      "set": "Đặt",
+      "remove_expiration": "Xóa hạn",
+      "clear": "Bỏ chọn",
+      "done": "Đã cập nhật {count} liên kết",
+      "partial": "{done} hoàn tất, {failed} thất bại",
+      "delete_title": "Xóa {count} liên kết?",
+      "delete_description": "Người mở hoặc quét các liên kết này sẽ không còn đến được đích. Không thể hoàn tác."
+    },
     "stats": {
       "retry": "Thử lại số liệu của {slug}",
       "visits": "{count} lượt truy cập",

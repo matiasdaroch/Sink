@@ -44,6 +44,36 @@
       "tags_loading": "A carregar etiquetas…",
       "tags_failed": "Falha ao carregar as etiquetas."
     },
+    "view": {
+      "label": "Esquema",
+      "cards": "Vista em cartões",
+      "list": "Vista em lista"
+    },
+    "list": {
+      "select_all": "Selecionar todas as ligações carregadas",
+      "select_link": "Selecionar {slug}",
+      "link": "Ligação",
+      "destination": "Destino",
+      "created": "Criada",
+      "clicks": "Cliques"
+    },
+    "bulk": {
+      "label": "Ações em massa",
+      "selected": "{count} selecionada(s)",
+      "progress": "{done} / {total}",
+      "add_tag": "Adicionar etiqueta",
+      "add": "Adicionar",
+      "remove_tag": "Remover etiqueta",
+      "expiration": "Expiração",
+      "expiration_description": "As ligações deixam de funcionar no fim deste dia.",
+      "set": "Definir",
+      "remove_expiration": "Remover expiração",
+      "clear": "Limpar",
+      "done": "{count} ligações atualizadas",
+      "partial": "{done} concluída(s), {failed} com falha",
+      "delete_title": "Eliminar {count} ligações?",
+      "delete_description": "Quem abrir ou digitalizar estas ligações deixará de chegar ao destino. Esta ação não pode ser anulada."
+    },
     "stats": {
       "retry": "Tentar novamente as estatísticas de {slug}",
       "visits": "{count} visitas",

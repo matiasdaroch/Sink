@@ -44,6 +44,36 @@
       "tags_loading": "Carregando tags…",
       "tags_failed": "Falha ao carregar as tags."
     },
+    "view": {
+      "label": "Layout",
+      "cards": "Visualização em cartões",
+      "list": "Visualização em lista"
+    },
+    "list": {
+      "select_all": "Selecionar todos os links carregados",
+      "select_link": "Selecionar {slug}",
+      "link": "Link",
+      "destination": "Destino",
+      "created": "Criado",
+      "clicks": "Cliques"
+    },
+    "bulk": {
+      "label": "Ações em massa",
+      "selected": "{count} selecionado(s)",
+      "progress": "{done} / {total}",
+      "add_tag": "Adicionar tag",
+      "add": "Adicionar",
+      "remove_tag": "Remover tag",
+      "expiration": "Expiração",
+      "expiration_description": "Os links param de funcionar no fim deste dia.",
+      "set": "Definir",
+      "remove_expiration": "Remover expiração",
+      "clear": "Limpar",
+      "done": "{count} links atualizados",
+      "partial": "{done} concluído(s), {failed} com falha",
+      "delete_title": "Excluir {count} links?",
+      "delete_description": "Quem abrir ou escanear esses links não chegará mais ao destino. Esta ação não pode ser desfeita."
+    },
     "stats": {
       "retry": "Tentar novamente as estatísticas de {slug}",
       "visits": "{count} visitas",

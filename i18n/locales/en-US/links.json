@@ -44,6 +44,36 @@
       "tags_loading": "Loading tags…",
       "tags_failed": "Failed to load tags."
     },
+    "view": {
+      "label": "Layout",
+      "cards": "Card view",
+      "list": "List view"
+    },
+    "list": {
+      "select_all": "Select all loaded links",
+      "select_link": "Select {slug}",
+      "link": "Link",
+      "destination": "Destination",
+      "created": "Created",
+      "clicks": "Clicks"
+    },
+    "bulk": {
+      "label": "Bulk actions",
+      "selected": "{count} selected",
+      "progress": "{done} / {total}",
+      "add_tag": "Add tag",
+      "add": "Add",
+      "remove_tag": "Remove tag",
+      "expiration": "Expiration",
+      "expiration_description": "Links stop working at the end of this day.",
+      "set": "Set",
+      "remove_expiration": "Remove expiration",
+      "clear": "Clear",
+      "done": "{count} links updated",
+      "partial": "{done} done, {failed} failed",
+      "delete_title": "Delete {count} links?",
+      "delete_description": "Anyone who opens or scans these links will no longer reach the destination. This can't be undone."
+    },
     "stats": {
       "retry": "Retry statistics for {slug}",
       "visits": "{count} visits",

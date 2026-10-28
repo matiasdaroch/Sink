@@ -6,3 +6,9 @@ export const REALTIME_PAUSED_KEY: InjectionKey<Ref<boolean>> = Symbol('realtimeP
 export const LINKS_COUNTERS_MAP_KEY: InjectionKey<Ref<Record<string, CounterData>>> = Symbol('linksCountersMap')
 export const LINKS_COUNTER_ERROR_IDS_KEY: InjectionKey<Ref<Set<string>>> = Symbol('linksCounterErrorIds')
 export const RETRY_LINK_COUNTERS_KEY: InjectionKey<(id: string) => void> = Symbol('retryLinkCounters')
+
+export interface LinkSelection {
+  selectedSlugs: Ref<Set<string>>
+  toggleSelected: (slug: string, value: boolean) => void
+}
+export const LINK_SELECTION_KEY: InjectionKey<LinkSelection> = Symbol('linkSelection')

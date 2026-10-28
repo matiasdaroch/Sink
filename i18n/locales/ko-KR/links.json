@@ -44,6 +44,36 @@
       "tags_loading": "태그 불러오는 중…",
       "tags_failed": "태그를 불러오지 못했습니다."
     },
+    "view": {
+      "label": "레이아웃",
+      "cards": "카드 보기",
+      "list": "목록 보기"
+    },
+    "list": {
+      "select_all": "불러온 링크 모두 선택",
+      "select_link": "{slug} 선택",
+      "link": "링크",
+      "destination": "대상",
+      "created": "생성일",
+      "clicks": "클릭"
+    },
+    "bulk": {
+      "label": "일괄 작업",
+      "selected": "{count}개 선택됨",
+      "progress": "{done} / {total}",
+      "add_tag": "태그 추가",
+      "add": "추가",
+      "remove_tag": "태그 제거",
+      "expiration": "만료",
+      "expiration_description": "링크는 이 날짜가 끝나면 작동하지 않습니다.",
+      "set": "설정",
+      "remove_expiration": "만료 제거",
+      "clear": "선택 해제",
+      "done": "링크 {count}개 업데이트됨",
+      "partial": "{done}개 완료, {failed}개 실패",
+      "delete_title": "링크 {count}개를 삭제할까요?",
+      "delete_description": "이 링크를 열거나 스캔하는 사람은 더 이상 대상에 도달할 수 없습니다. 이 작업은 되돌릴 수 없습니다."
+    },
     "stats": {
       "retry": "{slug} 통계 다시 불러오기",
       "visits": "방문 {count}회",

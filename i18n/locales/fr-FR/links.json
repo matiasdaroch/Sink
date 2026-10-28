@@ -44,6 +44,36 @@
       "tags_loading": "Chargement des tags…",
       "tags_failed": "Échec du chargement des tags."
     },
+    "view": {
+      "label": "Disposition",
+      "cards": "Vue en cartes",
+      "list": "Vue en liste"
+    },
+    "list": {
+      "select_all": "Sélectionner tous les liens chargés",
+      "select_link": "Sélectionner {slug}",
+      "link": "Lien",
+      "destination": "Destination",
+      "created": "Créé",
+      "clicks": "Clics"
+    },
+    "bulk": {
+      "label": "Actions groupées",
+      "selected": "{count} sélectionné(s)",
+      "progress": "{done} / {total}",
+      "add_tag": "Ajouter un tag",
+      "add": "Ajouter",
+      "remove_tag": "Retirer un tag",
+      "expiration": "Expiration",
+      "expiration_description": "Les liens cessent de fonctionner à la fin de ce jour.",
+      "set": "Définir",
+      "remove_expiration": "Supprimer l’expiration",
+      "clear": "Effacer",
+      "done": "{count} liens mis à jour",
+      "partial": "{done} terminé(s), {failed} en échec",
+      "delete_title": "Supprimer {count} liens ?",
+      "delete_description": "Les personnes qui ouvrent ou scannent ces liens n’atteindront plus la destination. Cette action est irréversible."
+    },
     "stats": {
       "retry": "Réessayer les statistiques de {slug}",
       "visits": "{count} visites",

@@ -44,6 +44,36 @@
       "tags_loading": "正在載入標籤…",
       "tags_failed": "標籤載入失敗。"
     },
+    "view": {
+      "label": "版面配置",
+      "cards": "卡片檢視",
+      "list": "清單檢視"
+    },
+    "list": {
+      "select_all": "選取所有已載入的連結",
+      "select_link": "選取 {slug}",
+      "link": "連結",
+      "destination": "目標",
+      "created": "建立時間",
+      "clicks": "點擊"
+    },
+    "bulk": {
+      "label": "批次操作",
+      "selected": "已選取 {count} 個",
+      "progress": "{done} / {total}",
+      "add_tag": "新增標籤",
+      "add": "新增",
+      "remove_tag": "移除標籤",
+      "expiration": "到期時間",
+      "expiration_description": "連結將在當天結束時失效。",
+      "set": "設定",
+      "remove_expiration": "移除到期時間",
+      "clear": "取消選取",
+      "done": "已更新 {count} 個連結",
+      "partial": "{done} 個成功，{failed} 個失敗",
+      "delete_title": "刪除 {count} 個連結？",
+      "delete_description": "開啟或掃描這些連結的人將無法再抵達目標網址。此操作無法復原。"
+    },
     "stats": {
       "retry": "重新載入 {slug} 的統計資料",
       "visits": "{count} 次造訪",
