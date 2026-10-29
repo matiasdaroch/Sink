@@ -1,6 +1,6 @@
 export default defineAppConfig({
   // MIK customization: white-label
-  title: 'MIK.archi Links',
+  title: 'MIK Architecture Links',
   documentation: '',
   github: '',
   coffee: '',

@@ -1,82 +1,83 @@
 ---
 version: alpha
 name: Sink
-description: Semantic design tokens and component guidance for the Sink interface.
+description: Semantic design tokens and component guidance for the Sink interface, branded for MIK Architecture.
 colors:
-  card: "oklch(1 0 0)"
-  card-foreground: "oklch(0.141 0.005 285.823)"
-  popover: "oklch(1 0 0)"
-  popover-foreground: "oklch(0.141 0.005 285.823)"
-  primary: "oklch(0.21 0.006 285.885)"
-  primary-foreground: "oklch(0.985 0 0)"
-  secondary: "oklch(0.967 0.001 286.375)"
-  secondary-foreground: "oklch(0.21 0.006 285.885)"
-  muted: "oklch(0.967 0.001 286.375)"
-  muted-foreground: "oklch(0.552 0.016 285.938)"
-  accent: "oklch(0.967 0.001 286.375)"
-  accent-foreground: "oklch(0.21 0.006 285.885)"
-  success: "oklch(0.55 0.16 145)"
-  success-foreground: "oklch(0.985 0 0)"
-  destructive: "oklch(0.577 0.245 27.325)"
-  border: "oklch(0.92 0.004 286.32)"
-  input: "oklch(0.92 0.004 286.32)"
-  ring: "oklch(0.705 0.015 286.067)"
-  chart-1: "oklch(0.871 0.15 154.449)"
-  chart-2: "oklch(0.723 0.219 149.579)"
-  chart-3: "oklch(0.627 0.194 149.214)"
-  chart-4: "oklch(0.527 0.154 150.069)"
-  chart-5: "oklch(0.448 0.119 151.328)"
-  sidebar: "oklch(0.985 0 0)"
-  sidebar-foreground: "oklch(0.141 0.005 285.823)"
-  sidebar-primary: "oklch(0.21 0.006 285.885)"
-  sidebar-primary-foreground: "oklch(0.985 0 0)"
-  sidebar-accent: "oklch(0.967 0.001 286.375)"
-  sidebar-accent-foreground: "oklch(0.21 0.006 285.885)"
-  sidebar-border: "oklch(0.92 0.004 286.32)"
-  sidebar-ring: "oklch(0.705 0.015 286.067)"
-  background: "oklch(1 0 0)"
-  foreground: "oklch(0.141 0.005 285.823)"
-  dark-background: "oklch(0.141 0.005 285.823)"
-  dark-foreground: "oklch(0.985 0 0)"
-  dark-card: "oklch(0.21 0.006 285.885)"
-  dark-card-foreground: "oklch(0.985 0 0)"
-  dark-popover: "oklch(0.21 0.006 285.885)"
-  dark-popover-foreground: "oklch(0.985 0 0)"
-  dark-primary: "oklch(0.92 0.004 286.32)"
-  dark-primary-foreground: "oklch(0.21 0.006 285.885)"
-  dark-secondary: "oklch(0.274 0.006 286.033)"
-  dark-secondary-foreground: "oklch(0.985 0 0)"
-  dark-muted: "oklch(0.274 0.006 286.033)"
-  dark-muted-foreground: "oklch(0.705 0.015 286.067)"
-  dark-accent: "oklch(0.274 0.006 286.033)"
-  dark-accent-foreground: "oklch(0.985 0 0)"
-  dark-success: "oklch(0.72 0.17 145)"
-  dark-success-foreground: "oklch(0.18 0.04 145)"
-  dark-destructive: "oklch(0.704 0.191 22.216)"
-  dark-border: "oklch(1 0 0 / 10%)"
-  dark-input: "oklch(1 0 0 / 15%)"
-  dark-ring: "oklch(0.552 0.016 285.938)"
-  dark-chart-1: "oklch(0.871 0.15 154.449)"
-  dark-chart-2: "oklch(0.723 0.219 149.579)"
-  dark-chart-3: "oklch(0.627 0.194 149.214)"
-  dark-chart-4: "oklch(0.527 0.154 150.069)"
-  dark-chart-5: "oklch(0.448 0.119 151.328)"
-  dark-sidebar: "oklch(0.21 0.006 285.885)"
-  dark-sidebar-foreground: "oklch(0.985 0 0)"
-  dark-sidebar-primary: "oklch(0.488 0.243 264.376)"
-  dark-sidebar-primary-foreground: "oklch(0.985 0 0)"
-  dark-sidebar-accent: "oklch(0.274 0.006 286.033)"
-  dark-sidebar-accent-foreground: "oklch(0.985 0 0)"
-  dark-sidebar-border: "oklch(1 0 0 / 10%)"
-  dark-sidebar-ring: "oklch(0.552 0.016 285.938)"
+  card: "#f7f5f1"
+  card-foreground: "#221f1f"
+  popover: "#f7f5f1"
+  popover-foreground: "#221f1f"
+  primary: "#46736e"
+  primary-foreground: "#ffffff"
+  secondary: "#eeebe5"
+  secondary-foreground: "#221f1f"
+  muted: "#eeebe5"
+  muted-foreground: "#3f413e"
+  accent: "#e1efec"
+  accent-foreground: "#221f1f"
+  success: "#46736e"
+  success-foreground: "#ffffff"
+  destructive: "#d92d20"
+  border: "#e0dcd4"
+  input: "#e0dcd4"
+  ring: "#46736e"
+  chart-1: "#46736e"
+  chart-2: "#038c7f"
+  chart-3: "#a9d9d0"
+  chart-4: "#3f413e"
+  chart-5: "#9c9a94"
+  sidebar: "#eeebe5"
+  sidebar-foreground: "#221f1f"
+  sidebar-primary: "#46736e"
+  sidebar-primary-foreground: "#ffffff"
+  sidebar-accent: "#e1efec"
+  sidebar-accent-foreground: "#221f1f"
+  sidebar-border: "#e0dcd4"
+  sidebar-ring: "#46736e"
+  background: "#f7f5f1"
+  foreground: "#221f1f"
+  dark-background: "#221f1f"
+  dark-foreground: "#ffffff"
+  dark-card: "#2c2929"
+  dark-card-foreground: "#ffffff"
+  dark-popover: "#2c2929"
+  dark-popover-foreground: "#ffffff"
+  dark-primary: "#46736e"
+  dark-primary-foreground: "#ffffff"
+  dark-secondary: "#2c2929"
+  dark-secondary-foreground: "#ffffff"
+  dark-muted: "#2c2929"
+  dark-muted-foreground: "#ddeeea"
+  dark-accent: "#2f4744"
+  dark-accent-foreground: "#ffffff"
+  dark-success: "#a9d9d0"
+  dark-success-foreground: "#221f1f"
+  dark-destructive: "#ff6b5b"
+  dark-border: "#3f413e"
+  dark-input: "#4a4c49"
+  dark-ring: "#a9d9d0"
+  dark-chart-1: "#a9d9d0"
+  dark-chart-2: "#038c7f"
+  dark-chart-3: "#46736e"
+  dark-chart-4: "#ddeeea"
+  dark-chart-5: "#7c8a87"
+  dark-sidebar: "#1a1818"
+  dark-sidebar-foreground: "#ffffff"
+  dark-sidebar-primary: "#a9d9d0"
+  dark-sidebar-primary-foreground: "#221f1f"
+  dark-sidebar-accent: "#2f4744"
+  dark-sidebar-accent-foreground: "#ffffff"
+  dark-sidebar-border: "#3f413e"
+  dark-sidebar-ring: "#a9d9d0"
 typography:
   sans:
-    fontFamily: "IBM Plex Sans, sans-serif"
+    fontFamily: "Mulish, sans-serif"
   heading:
-    fontFamily: "IBM Plex Sans, sans-serif"
+    fontFamily: "Catamaran, sans-serif"
+    fontWeight: 600
 rounded:
-  base: 0.625rem
-  lg: 0.625rem
+  base: 2px
+  lg: 2px
 components:
   button-default:
     backgroundColor: "{colors.primary}"
@@ -101,11 +102,11 @@ This file is a derived summary for design-aware agents. If it conflicts with `ap
 
 ## Colors
 
-The unprefixed tokens reproduce the semantic roles in `:root`; `dark-*` tokens flatten the corresponding `.dark` values. Always use roles as intended and keep each background paired with its foreground. The green `chart-1` through `chart-5` sequence is for charts only. Use `success` for positive status and completion indicators, `ring` for focus emphasis, and `destructive` for destructive or invalid states, including their dark-mode counterparts.
+The unprefixed tokens reproduce the semantic roles in `:root`; `dark-*` tokens flatten the corresponding `.dark` values. Always use roles as intended and keep each background paired with its foreground. The palette follows the MIK Architecture design system: `paper` (#f7f5f1) grounds, `mik-black` (#221f1f) ink, `mik-gray` (#3f413e) secondary text, `mik-green-dark` (#46736e) for primary actions and focus, and `green-mist` (#e1efec) for hover and selection. The same mapping is used by meet.mikarch.com. `chart-1` through `chart-5` draw from the MIK palette and are for charts only. Use `success` for positive status and completion indicators, `ring` for focus emphasis, and `destructive` for destructive or invalid states, including their dark-mode counterparts.
 
 ## Typography
 
-Use IBM Plex Sans for interface text. `heading` is an alias of the same family, not a separate display face. Components choose font size, weight, and line height with local utilities; this file does not define a global type scale.
+Use Mulish for interface text and Catamaran Semibold (600) for headings, titles and table headers, as the MIK Architecture design system sets them. The sidebar and public header carry the text-only MIK ARCHITECTURE lockup from `app/components/MikLockup.vue`. Components choose font size, weight, and line height with local utilities; this file does not define a global type scale.
 
 ## Layout
 
@@ -113,13 +114,11 @@ The repository does not define a global grid, container, breakpoint, or spacing 
 
 ## Elevation & Depth
 
-Base surfaces establish depth with semantic backgrounds, borders, and rings. Dialogs and floating content use overlays, rings, and shadows where their implementations specify them. Shadows are component implementation details, not global elevation tokens.
+Base surfaces establish depth with semantic backgrounds, borders, and rings. Shadows are switched off: every `--shadow-*` step resolves to none, so dialogs and floating content rely on their overlays, borders and rings.
 
 ## Shapes
 
-The base radius is `0.625rem`. Derived CSS radii are `sm = calc(var(--radius) - 4px)`, `md = calc(var(--radius) - 2px)`, `lg = var(--radius)`, and `xl = calc(var(--radius) + 4px)`. Utilities such as `rounded-2xl` and `rounded-4xl` are local component choices, not global design tokens.
-
-Generous component radii coexist with compact density; a larger radius does not imply a larger control.
+The base radius is `2px`, and every step of the radius scale (`xs` through `4xl`) resolves to it, so corners are square everywhere. `rounded-full` stays round for avatars, switches and status dots.
 
 ## Components
 
@@ -128,7 +127,7 @@ Generous component radii coexist with compact density; a larger radius does not 
 - Cards pair card background and foreground colors, use a subtle ring, and provide default and small density variants. Use small density for repeated dashboard collections and default density for standalone sections, forms, and empty states.
 - Standard dialogs use popover colors, an overlay, open/closed motion, and a subtle ring. The scrollable dialog variant instead uses the background role, a border, and a local shadow; other floating content follows its own implementation.
 - Tabs provide default filled and line variants with active, hover, focus, disabled, horizontal, and vertical states. When a horizontal list does not fit, scrolling belongs to an outer wrapper, focus-ring clearance is preserved, and the active trigger remains visible.
-- The sidebar uses its dedicated background, foreground, accent, border, and ring roles across responsive, collapsible, floating, and inset variants. Primary navigation uses the default shape while idle and a stronger pill treatment for both hover and active states. Secondary utilities are compact icon-only controls and rely on native collapsed behavior. Sidebar primary roles are defined but are not currently consumed by these components.
+- The sidebar uses its dedicated background, foreground, accent, border, and ring roles across responsive, collapsible, floating, and inset variants. Primary navigation uses the default square shape in every state. Secondary utilities are compact icon-only controls and rely on native collapsed behavior. Sidebar primary roles are defined but are not currently consumed by these components.
 
 Components expose stable `data-slot` attributes for composition and styling. Reuse the existing UI components and their variants; do not hand-edit generated components under `app/components/ui/**`.
 

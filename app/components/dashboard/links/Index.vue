@@ -201,7 +201,7 @@ linksStore.onLinkUpdate(({ link, type }) => {
     <div
       class="
         grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 bg-muted/40 px-3
-        py-2 text-xs font-medium text-muted-foreground
+        py-2 font-heading text-[13px] font-semibold text-muted-foreground
         md:grid-cols-[auto_minmax(0,2fr)_minmax(0,1fr)_6rem_4rem_auto]
       "
     >

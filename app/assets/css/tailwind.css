@@ -5,10 +5,26 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  /* MIK customization: square corners. Every step of the radius scale
+     resolves to --radius (2px), so the pill controls of the reka-maia style
+     come out square without editing app/components/ui/**. rounded-full
+     (avatars, switches, status dots) is unaffected. */
+  --radius-xs: var(--radius);
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+  /* MIK customization: no shadows; rules and color fields separate. */
+  --shadow-2xs: 0 0 #0000;
+  --shadow-xs: 0 0 #0000;
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+  --shadow-xl: 0 0 #0000;
+  --shadow-2xl: 0 0 #0000;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -47,78 +63,80 @@
 }
 
 :root {
+  /* MIK customization: palette from the MIK Architecture design system,
+     mapped the same way as meet.mikarch.com (Punctual fork). */
   color-scheme: light;
-  --radius: 0.625rem;
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --success: oklch(0.55 0.16 145);
-  --success-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
+  --radius: 2px;
+  --card: #f7f5f1;
+  --card-foreground: #221f1f;
+  --popover: #f7f5f1;
+  --popover-foreground: #221f1f;
+  --primary: #46736e;
+  --primary-foreground: #ffffff;
+  --secondary: #eeebe5;
+  --secondary-foreground: #221f1f;
+  --muted: #eeebe5;
+  --muted-foreground: #3f413e;
+  --accent: #e1efec;
+  --accent-foreground: #221f1f;
+  --success: #46736e;
+  --success-foreground: #ffffff;
+  --destructive: #d92d20;
+  --border: #e0dcd4;
+  --input: #e0dcd4;
   --ring: #46736e;
   --chart-1: #46736e;
-  --chart-2: oklch(0.723 0.219 149.579);
-  --chart-3: oklch(0.627 0.194 149.214);
-  --chart-4: oklch(0.527 0.154 150.069);
-  --chart-5: oklch(0.448 0.119 151.328);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
+  --chart-2: #038c7f;
+  --chart-3: #a9d9d0;
+  --chart-4: #3f413e;
+  --chart-5: #9c9a94;
+  --sidebar: #eeebe5;
+  --sidebar-foreground: #221f1f;
+  --sidebar-primary: #46736e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e1efec;
+  --sidebar-accent-foreground: #221f1f;
+  --sidebar-border: #e0dcd4;
   --sidebar-ring: #46736e;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  --background: #f7f5f1;
+  --foreground: #221f1f;
 }
 
 .dark {
   color-scheme: dark;
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --success: oklch(0.72 0.17 145);
-  --success-foreground: oklch(0.18 0.04 145);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: #46736e;
-  --chart-1: #46736e;
-  --chart-2: oklch(0.723 0.219 149.579);
-  --chart-3: oklch(0.627 0.194 149.214);
-  --chart-4: oklch(0.527 0.154 150.069);
-  --chart-5: oklch(0.448 0.119 151.328);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #46736e;
+  --background: #221f1f;
+  --foreground: #ffffff;
+  --card: #2c2929;
+  --card-foreground: #ffffff;
+  --popover: #2c2929;
+  --popover-foreground: #ffffff;
+  --primary: #46736e;
+  --primary-foreground: #ffffff;
+  --secondary: #2c2929;
+  --secondary-foreground: #ffffff;
+  --muted: #2c2929;
+  --muted-foreground: #ddeeea;
+  --accent: #2f4744;
+  --accent-foreground: #ffffff;
+  --success: #a9d9d0;
+  --success-foreground: #221f1f;
+  --destructive: #ff6b5b;
+  --border: #3f413e;
+  --input: #4a4c49;
+  --ring: #a9d9d0;
+  --chart-1: #a9d9d0;
+  --chart-2: #038c7f;
+  --chart-3: #46736e;
+  --chart-4: #ddeeea;
+  --chart-5: #7c8a87;
+  --sidebar: #1a1818;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #a9d9d0;
+  --sidebar-primary-foreground: #221f1f;
+  --sidebar-accent: #2f4744;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #3f413e;
+  --sidebar-ring: #a9d9d0;
 }
 
 @layer base {
@@ -177,9 +195,16 @@
   }
 }
 
-/* MIK customization: headings in Catamaran */
+/* MIK customization: headings and table headers in Catamaran */
 @layer base {
-  h1, h2, h3, h4, .cn-font-heading {
+  h1, h2, h3, h4, .cn-font-heading, [data-slot='table-head'] {
     font-family: var(--font-heading);
   }
+}
+
+/* MIK customization: Catamaran is set Semibold, as on meet.mikarch.com.
+   Unlayered so it wins over the font-medium utility the generated title
+   components carry. */
+h1, h2, h3, h4, .cn-font-heading, [data-slot='table-head'] {
+  font-weight: 600;
 }
