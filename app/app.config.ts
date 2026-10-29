@@ -3,6 +3,8 @@ export default defineAppConfig({
   title: 'MIK Architecture Links',
   documentation: '',
   github: '',
+  // MIK customization: AGPL-3.0 §13, offer users the modified source.
+  source: 'https://github.com/matiasdaroch/Sink',
   coffee: '',
   twitter: '',
   telegram: '',

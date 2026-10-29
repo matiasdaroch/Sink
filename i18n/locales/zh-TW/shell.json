@@ -8,7 +8,8 @@
         "twitter": "Twitter",
         "mastodon": "Mastodon",
         "github": "GitHub"
-      }
+      },
+      "source": "原始碼"
     },
     "header": {
       "select_language": "選擇語言",

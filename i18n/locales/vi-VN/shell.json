@@ -8,7 +8,8 @@
         "twitter": "Twitter",
         "mastodon": "Mastodon",
         "github": "GitHub"
-      }
+      },
+      "source": "Mã nguồn"
     },
     "header": {
       "select_language": "Chọn ngôn ngữ",

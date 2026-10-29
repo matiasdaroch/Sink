@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/sheet'
 
 const mobileMenuOpen = shallowRef(false)
-const { title, documentation, telegram, twitter, github } = useAppConfig()
+const { title, documentation, telegram, twitter, github, source } = useAppConfig()
 const { rawStats } = useGithubStats()
 
 function closeMobileMenu() {
@@ -254,8 +254,20 @@ function closeMobileMenu() {
 
           <nav
             :aria-label="$t('layouts.links.resources_aria_label')"
-            class="flex flex-wrap justify-center gap-2 text-sm"
+            class="flex flex-wrap items-center justify-center gap-2 text-sm"
           >
+            <a
+              v-if="source"
+              :href="source"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                px-2 text-muted-foreground transition-colors
+                hover:text-foreground
+              "
+            >
+              {{ $t('layouts.footer.source') }}
+            </a>
             <Button
               v-if="twitter"
               as-child
