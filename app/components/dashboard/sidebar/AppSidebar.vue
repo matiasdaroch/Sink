@@ -55,10 +55,12 @@ const settingsItems = computed<NavItem[]>(() => [
             <NuxtLink
               to="/" :title="title"
             >
+              <!-- MIK customization: the favicon stands in for the lockup only
+                   when the sidebar is collapsed to icons, so MIK never shows twice. -->
               <div
                 class="
-                  flex aspect-square size-8 items-center justify-center
-                  rounded-full
+                  hidden aspect-square size-8 items-center justify-center
+                  group-data-[collapsible=icon]:flex
                 "
               >
                 <img
@@ -66,27 +68,12 @@ const settingsItems = computed<NavItem[]>(() => [
                   alt=""
                   width="32"
                   height="32"
-                  class="size-8 rounded-md border"
+                  class="size-8"
                 >
               </div>
-              <!-- MIK customization: text logo, MIK in Mulish Bold, ARCHITECTURE in Catamaran -->
-              <div
-                class="
-                  grid flex-1 text-left leading-tight text-black
-                  dark:text-white
-                "
-              >
-                <span class="truncate whitespace-nowrap">
-                  <span
-                    class="font-['Mulish'] text-[13px] font-bold tracking-wide"
-                  >MIK</span>
-                  <span
-                    class="
-                      font-['Catamaran'] text-[13.5px] font-normal tracking-wide
-                    "
-                  >ARCHITECTURE</span>
-                </span>
-                <span class="truncate text-xs text-muted-foreground">{{ title }}</span>
+              <div class="grid flex-1 text-left leading-tight">
+                <MikLockup class="truncate" />
+                <span class="truncate text-xs text-muted-foreground">{{ $t('nav.links') }}</span>
               </div>
             </NuxtLink>
           </SidebarMenuButton>

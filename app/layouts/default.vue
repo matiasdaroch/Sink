@@ -61,16 +61,7 @@ function closeMobileMenu() {
               :aria-label="$t('layouts.links.home_aria_label')"
               class="flex items-center space-x-2"
             >
-              <span class="flex size-8 items-center justify-center rounded-full">
-                <img
-                  src="/sink.png"
-                  :alt="`${title} Logo`"
-                  width="32"
-                  height="32"
-                  class="size-full rounded-full"
-                >
-              </span>
-              <span class="text-xl font-black">{{ title }}</span>
+              <MikLockup />
             </NuxtLink>
 
             <div
@@ -81,7 +72,7 @@ function closeMobileMenu() {
             >
               <NavigationMenu :viewport="false">
                 <NavigationMenuList>
-                  <NavigationMenuItem>
+                  <NavigationMenuItem v-if="documentation">
                     <NavigationMenuLink as-child>
                       <a
                         :href="documentation"
@@ -108,7 +99,7 @@ function closeMobileMenu() {
                 </NavigationMenuList>
               </NavigationMenu>
 
-              <Button as-child variant="outline">
+              <Button v-if="github" as-child variant="outline">
                 <a
                   :href="github"
                   target="_blank"
@@ -171,6 +162,7 @@ function closeMobileMenu() {
                 >
                   <nav class="flex flex-col gap-1">
                     <a
+                      v-if="documentation"
                       :href="documentation"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -202,7 +194,7 @@ function closeMobileMenu() {
                   </nav>
 
                   <div class="mt-auto flex flex-col items-stretch gap-4">
-                    <Button as-child variant="outline">
+                    <Button v-if="github" as-child variant="outline">
                       <a
                         :href="github"
                         target="_blank"
@@ -257,20 +249,7 @@ function closeMobileMenu() {
             :aria-label="$t('layouts.links.home_aria_label')"
             class="block size-fit"
           >
-            <div class="flex items-center space-x-2">
-              <span
-                class="flex size-8 items-center justify-center rounded-full"
-              >
-                <img
-                  src="/sink.png"
-                  :alt="`${title} Logo`"
-                  width="32"
-                  height="32"
-                  class="size-full rounded-full"
-                >
-              </span>
-              <span class="text-xl font-black">{{ title }}</span>
-            </div>
+            <MikLockup />
           </NuxtLink>
 
           <nav
