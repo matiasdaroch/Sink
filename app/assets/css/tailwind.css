@@ -202,6 +202,17 @@
   }
 }
 
+/* MIK customization: in dark mode the page ground carries the brand's
+   isometric cube pattern (mik-black tile, linework at 85%), one repeat at
+   97 x 161 px. The guidelines allow it on mik-black, never on paper, so
+   light mode stays plain. Header, footer, cards and the sidebar keep their
+   own solid surfaces above it. */
+@layer base {
+  .dark body {
+    background: var(--background) url('/mik-pattern-cube-black.svg') 0 0 / 96.83px 161.23px repeat;
+  }
+}
+
 /* MIK customization: Catamaran is set Semibold, as on meet.mikarch.com.
    Unlayered so it wins over the font-medium utility the generated title
    components carry. */
